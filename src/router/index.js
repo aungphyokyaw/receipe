@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -8,16 +7,39 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: ()=> import(/* webpackChunkName: "Home" */'../views/Home/Home.vue')
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: ()=> import(/* webpackChunkName: "Dashboard" */'../views/Dashboard/Dashboard')
+  },
+  {
+    path: '/recipes',
+    name: 'Recipes',
+    component: ()=> import(/* webpackChunkName: "Recipes" */'../views/Dashboard/Recipes')
+  },
+  {
+    path: '/save-recipes',
+    name: 'SaveRecipes',
+    component: ()=> import(/* webpackChunkName: "SaveRecipes" */'../views/Dashboard/SaveRecipes')
+  },
+  {
+    path: '/create-recipe',
+    name: 'CreateRecipe',
+    component: ()=> import(/* webpackChunkName: "CreateRecipe" */'../views/Dashboard/CreateRecipe')
+  },
+  {
+    path: '/auth',
+    name: 'LoginRegister',
+    component: ()=> import(/* webpackChunkName: "LoginRegister" */'../views/Auth/LoginRegister')
+  },
+  {
+    path: '/detail/:userID/:postID',
+    name: 'DetailRecipe',
+    component: ()=> import(/* webpackChunkName: "DetailRecipe" */'../views/Home/DetailRecipe')
+  },
+  
 ]
 
 const router = new VueRouter({
